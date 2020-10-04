@@ -4,8 +4,9 @@ import com.udacity.jdnd.course3.critter.domain.user.Customer;
 import com.udacity.jdnd.course3.critter.gateway.api.dto.CustomerDTO;
 import com.udacity.jdnd.course3.critter.gateway.api.dto.EmployeeDTO;
 import com.udacity.jdnd.course3.critter.gateway.api.dto.EmployeeRequestDTO;
-import com.udacity.jdnd.course3.critter.service.CustomerCreateService;
-import com.udacity.jdnd.course3.critter.service.CustomerFindAllService;
+import com.udacity.jdnd.course3.critter.service.customer.CustomerCreateService;
+import com.udacity.jdnd.course3.critter.service.customer.CustomerFindAllService;
+import com.udacity.jdnd.course3.critter.service.employee.EmployeeCreateService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
@@ -29,6 +30,7 @@ public class UserController {
 
     private final CustomerCreateService customerCreateService;
     private final CustomerFindAllService customerFindAllService;
+    private final EmployeeCreateService employeeCreateService;
 
     @PostMapping("/customer")
     public CustomerDTO saveCustomer(@RequestBody CustomerDTO customerDTO){
@@ -53,7 +55,9 @@ public class UserController {
 
     @PostMapping("/employee")
     public EmployeeDTO saveEmployee(@RequestBody EmployeeDTO employeeDTO) {
-        throw new UnsupportedOperationException();
+        final Long employeeId = employeeCreateService.execute(employeeDTO.toEmployeeDomain());
+        employeeDTO.setId(employeeId);
+        return employeeDTO;
     }
 
     @PostMapping("/employee/{employeeId}")

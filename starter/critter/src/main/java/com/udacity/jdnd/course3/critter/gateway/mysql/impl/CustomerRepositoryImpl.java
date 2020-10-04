@@ -1,7 +1,8 @@
-package com.udacity.jdnd.course3.critter.gateway.mysql;
+package com.udacity.jdnd.course3.critter.gateway.mysql.impl;
 
 import com.udacity.jdnd.course3.critter.domain.pet.Pet;
 import com.udacity.jdnd.course3.critter.domain.user.Customer;
+import com.udacity.jdnd.course3.critter.gateway.mysql.CustomerRepository;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;

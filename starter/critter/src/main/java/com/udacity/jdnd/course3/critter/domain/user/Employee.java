@@ -24,4 +24,10 @@ public class Employee extends User{
     @ManyToMany
     private List<Schedule> schedules;
 
+    public Employee(final String name, final Set<EmployeeSkill> skills, final Set<DayOfWeek> daysAvailable){
+        super(null, name);
+        this.skills = skills;
+        this.daysAvailable = daysAvailable;
+    }
+
 }

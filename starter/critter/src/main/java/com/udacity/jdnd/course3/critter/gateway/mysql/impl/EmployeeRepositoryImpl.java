@@ -1,6 +1,7 @@
-package com.udacity.jdnd.course3.critter.gateway.mysql;
+package com.udacity.jdnd.course3.critter.gateway.mysql.impl;
 
 import com.udacity.jdnd.course3.critter.domain.user.Employee;
+import com.udacity.jdnd.course3.critter.gateway.mysql.EmployeeRepository;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
@@ -13,7 +14,7 @@ import java.util.Set;
 
 @Transactional
 @Repository
-public class EmployeeRepositoryImpl implements EmployeeRepository{
+public class EmployeeRepositoryImpl implements EmployeeRepository {
 
     private static final String FIND_BY_DAY_AVAILABE =
             "SELECT e FROM Employee e " +

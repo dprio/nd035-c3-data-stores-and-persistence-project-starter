@@ -5,12 +5,15 @@ import com.udacity.jdnd.course3.critter.domain.user.Customer;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
+import org.apache.commons.collections4.ListUtils;
 import org.mockito.internal.util.collections.ListUtil;
 import org.springframework.util.CollectionUtils;
 
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
+
+import static org.apache.commons.collections4.ListUtils.emptyIfNull;
 
 /**
  * Represents the form that customer request and response data takes. Does not map
@@ -40,7 +43,7 @@ public class CustomerDTO {
                 .name(customer.getName())
                 .notes(customer.getNotes())
                 .phoneNumber(customer.getPhoneNumber())
-                .petIds(customer.getPets().stream().map(Pet::getId).collect(Collectors.toList()))
+                .petIds(emptyIfNull(customer.getPets()).stream().map(Pet::getId).collect(Collectors.toList()))
                 .build();
     }
 

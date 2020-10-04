@@ -1,4 +1,4 @@
-package com.udacity.jdnd.course3.critter.service;
+package com.udacity.jdnd.course3.critter.service.customer;
 
 import com.udacity.jdnd.course3.critter.domain.user.Customer;
 import com.udacity.jdnd.course3.critter.gateway.mysql.CustomerRepository;
@@ -9,12 +9,11 @@ import java.util.List;
 
 @Service
 @RequiredArgsConstructor
-public class CustomerFindAllService {
+public class CustomerCreateService {
 
     private final CustomerRepository customerRepository;
 
-    public List<Customer> execute(){
-        return customerRepository.findAll();
+    public Long execute(final Customer customer, final List<Long> petsIds){
+        return customerRepository.save(customer);
     }
-
 }
