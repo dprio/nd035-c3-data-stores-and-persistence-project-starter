@@ -1,6 +1,7 @@
 package com.udacity.jdnd.course3.critter.gateway.mysql;
 
 import com.udacity.jdnd.course3.critter.domain.user.Employee;
+import com.udacity.jdnd.course3.critter.domain.user.EmployeeSkill;
 
 import java.time.DayOfWeek;
 import java.util.List;
@@ -14,5 +15,5 @@ public interface EmployeeRepository {
 
     void setAvailability(Long employeeId, Set<DayOfWeek> daysAvailable);
 
-    List<Employee> findByDaysAvailable(DayOfWeek dayOfWeek);
+    List<Employee> findByDayAvailableAndSkill(DayOfWeek dayOfWeek, Set<EmployeeSkill> employeeSkills);
 }

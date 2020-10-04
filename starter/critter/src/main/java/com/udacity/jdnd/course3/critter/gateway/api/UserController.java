@@ -1,12 +1,16 @@
 package com.udacity.jdnd.course3.critter.gateway.api;
 
 import com.udacity.jdnd.course3.critter.domain.user.Customer;
+import com.udacity.jdnd.course3.critter.domain.user.Employee;
 import com.udacity.jdnd.course3.critter.gateway.api.dto.CustomerDTO;
 import com.udacity.jdnd.course3.critter.gateway.api.dto.EmployeeDTO;
 import com.udacity.jdnd.course3.critter.gateway.api.dto.EmployeeRequestDTO;
 import com.udacity.jdnd.course3.critter.service.customer.CustomerCreateService;
 import com.udacity.jdnd.course3.critter.service.customer.CustomerFindAllService;
 import com.udacity.jdnd.course3.critter.service.employee.EmployeeCreateService;
+import com.udacity.jdnd.course3.critter.service.employee.EmployeeFindByDayAvailable;
+import com.udacity.jdnd.course3.critter.service.employee.EmployeeFindByIdService;
+import com.udacity.jdnd.course3.critter.service.employee.EmployeeSetAvailabilityService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
@@ -31,6 +35,9 @@ public class UserController {
     private final CustomerCreateService customerCreateService;
     private final CustomerFindAllService customerFindAllService;
     private final EmployeeCreateService employeeCreateService;
+    private final EmployeeFindByIdService employeeFindByIdService;
+    private final EmployeeSetAvailabilityService employeeSetAvailabilityService;
+    private final EmployeeFindByDayAvailable employeeFindByDayAvailable;
 
     @PostMapping("/customer")
     public CustomerDTO saveCustomer(@RequestBody CustomerDTO customerDTO){
@@ -62,17 +69,20 @@ public class UserController {
 
     @PostMapping("/employee/{employeeId}")
     public EmployeeDTO getEmployee(@PathVariable long employeeId) {
-        throw new UnsupportedOperationException();
+        final Employee employee = employeeFindByIdService.execute(employeeId);
+        return EmployeeDTO.fromEmployee(employee);
     }
 
     @PutMapping("/employee/{employeeId}")
     public void setAvailability(@RequestBody Set<DayOfWeek> daysAvailable, @PathVariable long employeeId) {
-        throw new UnsupportedOperationException();
+        employeeSetAvailabilityService.execute(employeeId, daysAvailable);
     }
 
     @GetMapping("/employee/availability")
     public List<EmployeeDTO> findEmployeesForService(@RequestBody EmployeeRequestDTO employeeDTO) {
-        throw new UnsupportedOperationException();
+        final List<Employee> employees = employeeFindByDayAvailable
+                .execute(employeeDTO.getDate().getDayOfWeek(), employeeDTO.getSkills());
+        return EmployeeDTO.fromEmployeeList(employees);
     }
 
 }

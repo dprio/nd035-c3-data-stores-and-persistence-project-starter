@@ -1,6 +1,7 @@
 package com.udacity.jdnd.course3.critter.gateway.mysql.impl;
 
 import com.udacity.jdnd.course3.critter.domain.user.Employee;
+import com.udacity.jdnd.course3.critter.domain.user.EmployeeSkill;
 import com.udacity.jdnd.course3.critter.gateway.mysql.EmployeeRepository;
 import org.springframework.stereotype.Repository;
 
@@ -11,6 +12,7 @@ import javax.transaction.Transactional;
 import java.time.DayOfWeek;
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 @Transactional
 @Repository
@@ -41,9 +43,11 @@ public class EmployeeRepositoryImpl implements EmployeeRepository {
     }
 
     @Override
-    public List<Employee> findByDaysAvailable(final DayOfWeek dayOfWeek) {
+    public List<Employee> findByDayAvailableAndSkill(final DayOfWeek dayOfWeek, final Set<EmployeeSkill> skills) {
         final TypedQuery<Employee> query = entityManager.createQuery(FIND_BY_DAY_AVAILABE, Employee.class);
         query.setParameter("dayOfWeek", dayOfWeek);
-        return query.getResultList();
+        return query.getResultList().stream()
+                .filter(employee -> employee.getSkills().containsAll(skills))
+                .collect(Collectors.toList());
     }
 }
