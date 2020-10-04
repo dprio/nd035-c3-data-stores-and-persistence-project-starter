@@ -10,6 +10,7 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 import javax.transaction.Transactional;
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 @Transactional
@@ -34,8 +35,8 @@ public class PerRepositoryImpl implements PetRepository {
     }
 
     @Override
-    public Pet findById(Long petId) {
-        return entityManager.find(Pet.class, petId);
+    public Optional<Pet> findById(Long petId) {
+        return Optional.ofNullable(entityManager.find(Pet.class, petId));
     }
 
     @Override

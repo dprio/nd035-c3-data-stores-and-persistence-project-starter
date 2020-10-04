@@ -4,6 +4,7 @@ import com.udacity.jdnd.course3.critter.domain.pet.Pet;
 import com.udacity.jdnd.course3.critter.domain.user.Customer;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface PetRepository {
 
@@ -11,7 +12,7 @@ public interface PetRepository {
 
     List<Pet> findAll();
 
-    Pet findById(Long petId);
+    Optional<Pet> findById(Long petId);
 
     List<Pet> findByOwner(Customer customer);
 

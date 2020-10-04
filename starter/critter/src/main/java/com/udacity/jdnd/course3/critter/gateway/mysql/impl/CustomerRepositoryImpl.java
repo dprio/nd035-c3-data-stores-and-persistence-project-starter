@@ -10,6 +10,7 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 import javax.transaction.Transactional;
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 @Transactional
@@ -41,5 +42,10 @@ public class CustomerRepositoryImpl implements CustomerRepository {
         final TypedQuery<Customer> query = entityManager.createQuery(FIND_BY_PET_ID, Customer.class);
         query.setParameter("pet", pet);
         return query.getSingleResult();
+    }
+
+    @Override
+    public Optional<Customer> findById(final Long customerId) {
+        return Optional.ofNullable(entityManager.find(Customer.class, customerId));
     }
 }
