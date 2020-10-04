@@ -1,8 +1,11 @@
 package com.udacity.jdnd.course3.critter.gateway.api;
 
+import com.udacity.jdnd.course3.critter.domain.user.Customer;
 import com.udacity.jdnd.course3.critter.gateway.api.dto.CustomerDTO;
 import com.udacity.jdnd.course3.critter.gateway.api.dto.EmployeeDTO;
 import com.udacity.jdnd.course3.critter.gateway.api.dto.EmployeeRequestDTO;
+import com.udacity.jdnd.course3.critter.service.CustomerCreateService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.DayOfWeek;
@@ -17,11 +20,19 @@ import java.util.Set;
  */
 @RestController
 @RequestMapping("/user")
+@ResponseBody
+@RequiredArgsConstructor
 public class UserController {
+
+    private final CustomerCreateService customerCreateService;
 
     @PostMapping("/customer")
     public CustomerDTO saveCustomer(@RequestBody CustomerDTO customerDTO){
-        throw new UnsupportedOperationException();
+        final Customer customer = customerDTO.toCustomerDomain();
+        final Long customerID = customerCreateService.execute(customer, customerDTO.getPetIds());
+        customerDTO.setId(customerID);
+
+        return customerDTO;
     }
 
     @GetMapping("/customer")

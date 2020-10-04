@@ -22,4 +22,10 @@ public class Customer extends User {
 
     @OneToMany
     private List<Pet> pets;
+
+    public Customer(final String name, final String phoneNumber, final String notes){
+        super(null, name);
+        this.phoneNumber = phoneNumber;
+        this.notes = notes;
+    }
 }
