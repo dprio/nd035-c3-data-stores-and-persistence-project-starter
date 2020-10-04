@@ -242,7 +242,7 @@ public class CritterFunctionalTest {
 
 
     private static EmployeeDTO createEmployeeDTO() {
-        EmployeeDTO employeeDTO = new EmployeeDTO();
+        EmployeeDTO employeeDTO = EmployeeDTO.builder().build();
         employeeDTO.setName("TestEmployee");
         employeeDTO.setSkills(Sets.newHashSet(EmployeeSkill.FEEDING, EmployeeSkill.PETTING));
         return employeeDTO;
