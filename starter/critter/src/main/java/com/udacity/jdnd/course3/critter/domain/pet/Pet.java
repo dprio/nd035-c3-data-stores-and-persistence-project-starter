@@ -1,5 +1,6 @@
 package com.udacity.jdnd.course3.critter.domain.pet;
 
+import com.udacity.jdnd.course3.critter.domain.Schedule;
 import com.udacity.jdnd.course3.critter.domain.pet.PetType;
 import com.udacity.jdnd.course3.critter.domain.user.Customer;
 import lombok.AllArgsConstructor;
@@ -10,6 +11,7 @@ import org.hibernate.annotations.Nationalized;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.List;
 
 @Entity
 @Builder
@@ -27,6 +29,9 @@ public class Pet {
     @ManyToOne
     private Customer owner;
     private LocalDate birthDate;
+
+    @ManyToMany(mappedBy = "pets")
+    private List<Schedule> schedules;
 
     @Nationalized
     private String notes;
