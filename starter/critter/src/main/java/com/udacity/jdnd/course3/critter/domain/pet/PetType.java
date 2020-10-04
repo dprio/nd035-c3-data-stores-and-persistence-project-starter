@@ -1,4 +1,4 @@
-package com.udacity.jdnd.course3.critter.domain;
+package com.udacity.jdnd.course3.critter.domain.pet;
 
 /**
  * A example list of pet type metadata that could be included on a request to create a pet.

@@ -2,11 +2,11 @@ package com.udacity.jdnd.course3.critter;
 
 import com.google.common.collect.Lists;
 import com.google.common.collect.Sets;
-import com.udacity.jdnd.course3.critter.domain.EmployeeSkill;
+import com.udacity.jdnd.course3.critter.domain.user.EmployeeSkill;
 import com.udacity.jdnd.course3.critter.gateway.api.PetController;
 import com.udacity.jdnd.course3.critter.gateway.api.UserController;
 import com.udacity.jdnd.course3.critter.gateway.api.dto.*;
-import com.udacity.jdnd.course3.critter.domain.PetType;
+import com.udacity.jdnd.course3.critter.domain.pet.PetType;
 import com.udacity.jdnd.course3.critter.gateway.api.ScheduleController;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;

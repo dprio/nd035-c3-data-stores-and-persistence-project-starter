@@ -1,6 +1,6 @@
 package com.udacity.jdnd.course3.critter.gateway.api.dto;
 
-import com.udacity.jdnd.course3.critter.domain.EmployeeSkill;
+import com.udacity.jdnd.course3.critter.domain.user.EmployeeSkill;
 import lombok.Getter;
 import lombok.Setter;
 
