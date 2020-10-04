@@ -5,7 +5,9 @@ import com.udacity.jdnd.course3.critter.gateway.api.dto.CustomerDTO;
 import com.udacity.jdnd.course3.critter.gateway.api.dto.EmployeeDTO;
 import com.udacity.jdnd.course3.critter.gateway.api.dto.EmployeeRequestDTO;
 import com.udacity.jdnd.course3.critter.service.CustomerCreateService;
+import com.udacity.jdnd.course3.critter.service.CustomerFindAllService;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.DayOfWeek;
@@ -22,22 +24,26 @@ import java.util.Set;
 @RequestMapping("/user")
 @ResponseBody
 @RequiredArgsConstructor
+@Slf4j
 public class UserController {
 
     private final CustomerCreateService customerCreateService;
+    private final CustomerFindAllService customerFindAllService;
 
     @PostMapping("/customer")
     public CustomerDTO saveCustomer(@RequestBody CustomerDTO customerDTO){
+        log.info("Starting create customer: {}", customerDTO);
         final Customer customer = customerDTO.toCustomerDomain();
         final Long customerID = customerCreateService.execute(customer, customerDTO.getPetIds());
         customerDTO.setId(customerID);
 
+        log.info("Successfully created customer: {}", customerDTO);
         return customerDTO;
     }
-
     @GetMapping("/customer")
     public List<CustomerDTO> getAllCustomers(){
-        throw new UnsupportedOperationException();
+        log.info("Starting getAllCustomers");
+        return CustomerDTO.fromDomainList(customerFindAllService.execute());
     }
 
     @GetMapping("/customer/pet/{petId}")
