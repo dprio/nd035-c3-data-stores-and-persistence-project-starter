@@ -1,0 +1,24 @@
+# Server port is arbitrary
+server:
+  port: 8082
+
+# Data Source Setup
+# Note: Users must create a mysql db that they will reference here, create a user that has access to it on localhost
+#       and provide the credentials below to access it
+  datasource:
+    url: jdbc:mysql://localhost:3306/exampleDB
+    username: app
+    password: secret
+    initialization-mode: always
+
+# uncomment the below lines to view sql output in console
+#spring.jpa.show-sql=true
+#spring.jpa.properties.hibernate.format_sql=true
+
+  jpa:
+    hibernate:
+      ddl-auto: create
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
