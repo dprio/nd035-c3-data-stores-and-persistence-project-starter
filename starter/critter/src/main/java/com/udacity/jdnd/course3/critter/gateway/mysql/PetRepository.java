@@ -8,7 +8,7 @@ import java.util.Optional;
 
 public interface PetRepository {
 
-    Long save(Pet pet);
+    Pet save(Pet pet);
 
     List<Pet> findAll();
 

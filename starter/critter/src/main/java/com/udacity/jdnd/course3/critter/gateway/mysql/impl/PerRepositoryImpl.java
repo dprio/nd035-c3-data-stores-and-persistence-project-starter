@@ -23,9 +23,9 @@ public class PerRepositoryImpl implements PetRepository {
     private EntityManager entityManager;
 
     @Override
-    public Long save(final Pet pet) {
+    public Pet save(final Pet pet) {
         entityManager.persist(pet);
-        return pet.getId();
+        return pet;
     }
 
     @Override

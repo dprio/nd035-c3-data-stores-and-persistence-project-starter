@@ -1,7 +1,6 @@
 package com.udacity.jdnd.course3.critter.domain.pet;
 
 import com.udacity.jdnd.course3.critter.domain.Schedule;
-import com.udacity.jdnd.course3.critter.domain.pet.PetType;
 import com.udacity.jdnd.course3.critter.domain.user.Customer;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -22,11 +21,11 @@ public class Pet {
 
     @Id
     @GeneratedValue
-    private long id;
+    private Long id;
     private PetType type;
     private String name;
 
-    @ManyToOne
+    @ManyToOne(optional = false)
     private Customer owner;
     private LocalDate birthDate;
 
