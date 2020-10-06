@@ -12,7 +12,7 @@ public interface CustomerRepository {
 
      List<Customer> findAll();
 
-     Customer findByPet(Pet petID);
+     Customer findByPet(Pet pet);
 
      Optional<Customer> findById(Long customerId);
 

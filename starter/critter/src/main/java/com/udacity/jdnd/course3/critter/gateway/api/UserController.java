@@ -7,6 +7,7 @@ import com.udacity.jdnd.course3.critter.gateway.api.dto.EmployeeDTO;
 import com.udacity.jdnd.course3.critter.gateway.api.dto.EmployeeRequestDTO;
 import com.udacity.jdnd.course3.critter.service.customer.CustomerCreateService;
 import com.udacity.jdnd.course3.critter.service.customer.CustomerFindAllService;
+import com.udacity.jdnd.course3.critter.service.customer.CustomerFindByPet;
 import com.udacity.jdnd.course3.critter.service.employee.EmployeeCreateService;
 import com.udacity.jdnd.course3.critter.service.employee.EmployeeFindByDayAvailable;
 import com.udacity.jdnd.course3.critter.service.employee.EmployeeFindByIdService;
@@ -34,6 +35,7 @@ public class UserController {
 
     private final CustomerCreateService customerCreateService;
     private final CustomerFindAllService customerFindAllService;
+    private final CustomerFindByPet customerFindByPet;
     private final EmployeeCreateService employeeCreateService;
     private final EmployeeFindByIdService employeeFindByIdService;
     private final EmployeeSetAvailabilityService employeeSetAvailabilityService;
@@ -57,7 +59,8 @@ public class UserController {
 
     @GetMapping("/customer/pet/{petId}")
     public CustomerDTO getOwnerByPet(@PathVariable long petId){
-        throw new UnsupportedOperationException();
+        final Customer customer = customerFindByPet.execute(petId);
+        return CustomerDTO.fromDomain(customer);
     }
 
     @PostMapping("/employee")
