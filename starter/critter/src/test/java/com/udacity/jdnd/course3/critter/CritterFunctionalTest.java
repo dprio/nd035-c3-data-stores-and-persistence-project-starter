@@ -199,11 +199,11 @@ public class CritterFunctionalTest {
         ScheduleDTO sched2 = populateSchedule(3, 1, LocalDate.of(2019, 12, 26), Sets.newHashSet(EmployeeSkill.PETTING));
 
         //add a third schedule that shares some employees and pets with the other schedules
-        ScheduleDTO sched3 = new ScheduleDTO();
+        ScheduleDTO sched3 = ScheduleDTO.builder().build();
         sched3.setEmployeeIds(sched1.getEmployeeIds());
         sched3.setPetIds(sched2.getPetIds());
-        sched3.setActivities(Sets.newHashSet(EmployeeSkill.SHAVING, EmployeeSkill.PETTING));
-        sched3.setDate(LocalDate.of(2020, 3, 23));
+        sched3.setActivities(Sets.newHashSet(EmployeeSkill.SHAVING, EmployeeSkill.WALKING));
+        sched3.setDate(LocalDate.of(2020, 3, 25));
         scheduleController.createSchedule(sched3);
 
         /*
@@ -269,7 +269,7 @@ public class CritterFunctionalTest {
     }
 
     private static ScheduleDTO createScheduleDTO(List<Long> petIds, List<Long> employeeIds, LocalDate date, Set<EmployeeSkill> activities) {
-        ScheduleDTO scheduleDTO = new ScheduleDTO();
+        ScheduleDTO scheduleDTO = ScheduleDTO.builder().build();
         scheduleDTO.setPetIds(petIds);
         scheduleDTO.setEmployeeIds(employeeIds);
         scheduleDTO.setDate(date);
