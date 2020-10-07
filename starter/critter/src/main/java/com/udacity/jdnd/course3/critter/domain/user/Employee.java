@@ -30,4 +30,8 @@ public class Employee extends User{
         this.daysAvailable = daysAvailable;
     }
 
+    public Employee(final Long id){
+        super(id, null);
+    }
+
 }

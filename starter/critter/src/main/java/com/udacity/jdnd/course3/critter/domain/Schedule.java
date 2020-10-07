@@ -3,10 +3,7 @@ package com.udacity.jdnd.course3.critter.domain;
 import com.udacity.jdnd.course3.critter.domain.pet.Pet;
 import com.udacity.jdnd.course3.critter.domain.user.Employee;
 import com.udacity.jdnd.course3.critter.domain.user.EmployeeSkill;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
@@ -21,6 +18,7 @@ import java.util.Set;
 @NoArgsConstructor
 @Getter
 @Setter
+@Builder
 public class Schedule {
 
     @Id

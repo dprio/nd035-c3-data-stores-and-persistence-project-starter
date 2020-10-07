@@ -5,13 +5,14 @@ import com.udacity.jdnd.course3.critter.domain.user.EmployeeSkill;
 
 import java.time.DayOfWeek;
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 
 public interface EmployeeRepository {
 
     Long save(Employee employee);
 
-    Employee findById(Long employeeId);
+    Optional<Employee> findById(Long employeeId);
 
     void setAvailability(Long employeeId, Set<DayOfWeek> daysAvailable);
 

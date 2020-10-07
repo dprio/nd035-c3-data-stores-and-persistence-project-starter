@@ -8,9 +8,11 @@ import org.springframework.stereotype.Repository;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
+import javax.swing.text.html.Option;
 import javax.transaction.Transactional;
 import java.time.DayOfWeek;
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -32,8 +34,8 @@ public class EmployeeRepositoryImpl implements EmployeeRepository {
     }
 
     @Override
-    public Employee findById(final Long employeeId) {
-        return entityManager.find(Employee.class,employeeId);
+    public Optional<Employee> findById(final Long employeeId) {
+        return Optional.ofNullable(entityManager.find(Employee.class,employeeId));
     }
 
     @Override
