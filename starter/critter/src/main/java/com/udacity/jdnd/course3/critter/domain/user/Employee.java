@@ -21,7 +21,7 @@ public class Employee extends User{
     @ElementCollection
     private Set<DayOfWeek> daysAvailable;
 
-    @ManyToMany
+    @ManyToMany(mappedBy = "employees")
     private List<Schedule> schedules;
 
     public Employee(final String name, final Set<EmployeeSkill> skills, final Set<DayOfWeek> daysAvailable){

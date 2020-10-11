@@ -4,9 +4,7 @@ import com.udacity.jdnd.course3.critter.domain.pet.Pet;
 import lombok.*;
 import org.hibernate.annotations.Nationalized;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Entity;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 import java.util.List;
 
 @Entity
@@ -21,7 +19,7 @@ public class Customer extends User {
     @Nationalized
     private String notes;
 
-    @OneToMany(mappedBy = "owner", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "owner", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<Pet> pets;
 
     public Customer(final String name, final String phoneNumber, final String notes){

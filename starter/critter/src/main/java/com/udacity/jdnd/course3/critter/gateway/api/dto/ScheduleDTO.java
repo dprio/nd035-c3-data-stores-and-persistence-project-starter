@@ -25,7 +25,7 @@ import static org.apache.commons.collections4.ListUtils.emptyIfNull;
 @Setter
 @Builder
 public class ScheduleDTO {
-    private long id;
+    private Long id;
     private List<Long> employeeIds;
     private List<Long> petIds;
     private LocalDate date;

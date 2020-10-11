@@ -28,12 +28,12 @@ public class ScheduleCreateService {
     public Schedule execute(final Schedule schedule){
 
         final List<Employee> employees = emptyIfNull(schedule.getEmployees()).stream()
-                .map(employee -> employeeRepository.findById(employee.getId()))
+                .map(employee -> employeeRepository.findById(employee.getId()).orElse(null))
                 .filter(Objects::nonNull)
                 .filter(employee ->
-                                employee.getDaysAvailable().contains(schedule.getDate().getDayOfWeek()) &&
+                                employee.getDaysAvailable().contains(schedule.getDate().getDayOfWeek()) && // checking employee availability
                                 employee.getSkills().stream()
-                                        .anyMatch(employeeSkill -> schedule.getActivities().contains(employeeSkill))
+                                        .anyMatch(employeeSkill -> schedule.getActivities().contains(employeeSkill)) //checking if employee has the required abilities
                         )
                 .collect(Collectors.toList());
 

@@ -16,7 +16,7 @@ import java.util.Optional;
 @Transactional
 public class CustomerRepositoryImpl implements CustomerRepository {
 
-    private static final String FIND_ALL = "SELECT c from Customer c";
+    private static final String FIND_ALL = "SELECT c from Customer c left join fetch c.pets";
     private static final String FIND_BY_PET_ID =
             "SELECT c from Customer c " +
             "WHERE :pet MEMBER OF c.pets";

@@ -5,10 +5,7 @@ import com.udacity.jdnd.course3.critter.domain.user.Employee;
 import com.udacity.jdnd.course3.critter.domain.user.EmployeeSkill;
 import lombok.*;
 
-import javax.persistence.ElementCollection;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.ManyToMany;
+import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Set;
@@ -22,6 +19,7 @@ import java.util.Set;
 public class Schedule {
 
     @Id
+    @GeneratedValue
     private Long id;
 
     @ManyToMany
