@@ -26,9 +26,9 @@ public class CustomerRepositoryImpl implements CustomerRepository {
     private EntityManager entityManager;
 
     @Override
-    public Long save(final Customer customer) {
+    public Customer save(final Customer customer) {
         entityManager.persist(customer);
-        return customer.getId();
+        return customer;
     }
 
     @Override

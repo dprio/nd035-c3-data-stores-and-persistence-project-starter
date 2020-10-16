@@ -44,12 +44,9 @@ public class UserController {
     @PostMapping("/customer")
     public CustomerDTO saveCustomer(@RequestBody CustomerDTO customerDTO){
         log.info("Starting create customer: {}", customerDTO);
-        final Customer customer = customerDTO.toCustomerDomain();
-        final Long customerID = customerCreateService.execute(customer, customerDTO.getPetIds());
-        customerDTO.setId(customerID);
-
+        final Customer customer = customerCreateService.execute(customerDTO.toCustomerDomain());
         log.info("Successfully created customer: {}", customerDTO);
-        return customerDTO;
+        return CustomerDTO.fromDomain(customer);
     }
     @GetMapping("/customer")
     public List<CustomerDTO> getAllCustomers(){
